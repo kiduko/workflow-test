@@ -22,9 +22,7 @@ jobs:
         with:
           node-version: "lts/*"
 
-      - name: Install dependencies
-        run: yarn install
-
       - name: Deploy to ${{ matrix.environment }}
         working-directory: packages/api
-        run: yarn deploy:${{ matrix.environment }}
+        run: yarn install
+          yarn deploy:${{ matrix.environment }}
