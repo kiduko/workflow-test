@@ -1,0 +1,30 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - deploy/api/dev
+      - deploy/api/alpha
+    paths:
+      - "packages/api/**"
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        environment: [dev, alpha]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "lts/*"
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Deploy to ${{ matrix.environment }}
+        working-directory: packages/api
+        run: yarn deploy:${{ matrix.environment }}
