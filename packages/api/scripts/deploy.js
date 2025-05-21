@@ -28,7 +28,7 @@ if (!config) {
     console.error(`지원하지 않는 환경입니다: ${environment}`);
     process.exit(1);
 }
-
+console.log("hello")
 console.log(`배포 환경: ${environment}`);
 console.log(`API URL: ${config.apiUrl}`);
 console.log(`리전: ${config.region}`);
