@@ -11,9 +11,6 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        environment: [dev, alpha]
     steps:
       - uses: actions/checkout@v4
 
@@ -22,7 +19,12 @@ jobs:
         with:
           node-version: "lts/*"
 
-      - name: Deploy to ${{ matrix.environment }}
+      - name: Deploy to environment
         working-directory: packages/api
-        run: yarn install
-          yarn deploy:${{ matrix.environment }}
+        run: |
+          yarn
+          if [[ $GITHUB_REF == "refs/heads/deploy/api/dev" ]]; then
+            yarn run deploy:dev
+          elif [[ $GITHUB_REF == "refs/heads/deploy/api/alpha" ]]; then
+            yarn run deploy:alpha
+          fi
