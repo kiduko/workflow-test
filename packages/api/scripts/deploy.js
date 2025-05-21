@@ -3,7 +3,7 @@ require('dotenv').config();
 const environment = process.argv[2];
 
 if (!environment) {
-    console.error('환경을 지정해주세요 (dev, alpha, real)');
+    console.error('환경을 지정 해주세요 (dev, alpha, real)');
     process.exit(1);
 }
 
