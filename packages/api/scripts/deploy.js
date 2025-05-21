@@ -29,7 +29,7 @@ if (!config) {
     process.exit(1);
 }
 
-console.log(`배포 환경: ${environment}`);
+console.log(`배 포 환경: ${environment}`);
 console.log(`API URL: ${config.apiUrl}`);
 console.log(`리전: ${config.region}`);
 
